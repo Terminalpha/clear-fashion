@@ -57,9 +57,16 @@ console.log(length_product)
 // 1. Create a variable and assign it the list of brands name only
 // 2. Log the variable
 // 3. Log how many brands we have
-var namebrands= marketplace.map(a=>a.brand);
+const namebrands= marketplace.map(a=>a.brand);
+var namebrandDistinct=[]
+namebrands.forEach(function(item){
+if ( namebrandDistinct.findIndex(x=>x==item)==-1 )
+{
+  namebrandDistinct.push(item);
+}
 
-console.log(namebrands)
+});
+console.log(namebrandDistinct);
 
 // 🎯 TODO: Sort by price
 // 1. Create a function to sort the marketplace products by price
