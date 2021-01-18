@@ -4,13 +4,13 @@
 console.log('🚀 This is it.');
 
 const MY_FAVORITE_BRANDS = [{
-  'name': 'Hopaal',
+  'name': 'hopaal',
   'url': 'https://hopaal.com/'
 }, {
-  'name': 'Loom',
+  'name': 'loom',
   'url': 'https://www.loom.fr'
 }, {
-  'name': 'ADRESSE',
+  'name': 'adresse',
   'url': 'https://adresse.paris/'
 }]
 
@@ -33,8 +33,9 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 1. Create a new variable and assign it the link of the cheapest t-shirt
 // I can find on these e-shops
 // 2. Log the variable
+var cheap=MY_FAVORITE_BRANDS[1].url;
 
-
+console.log(cheap);
 
 
 
@@ -50,13 +51,15 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 🎯 TODO: Number of products
 // 1. Create a variable and assign it the number of products
 // 2. Log the variable
-
-
+var length_product=marketplace.length;
+console.log(length_product)
 // 🎯 TODO: Brands name
 // 1. Create a variable and assign it the list of brands name only
 // 2. Log the variable
 // 3. Log how many brands we have
+var namebrands= marketplace.map(a=>a.brand);
 
+console.log(namebrands)
 
 // 🎯 TODO: Sort by price
 // 1. Create a function to sort the marketplace products by price
