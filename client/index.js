@@ -92,16 +92,18 @@ console.log(sortingDate);
 // 🎯 TODO: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
 // 2. Log the list
-
-
+var filtrePrice=marketplace.filter(item=>50<item.price<100);
+console.log(filtrePrice);
 // 🎯 TODO: Average Basket
 // 1. Determine the average basket of the marketplace
 // 2. Log the average
-
-
-
-
-
+var sumPrice=0
+marketplace.forEach(function(item)
+{
+  sumPrice=+item.price;
+});
+const average = sumPrice/marketplace.length;
+console.log(average);
 /**
  * 🏎
  * We are almost done with the `marketplace` variable
