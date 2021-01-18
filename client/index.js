@@ -33,7 +33,7 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 1. Create a new variable and assign it the link of the cheapest t-shirt
 // I can find on these e-shops
 // 2. Log the variable
-var cheap=MY_FAVORITE_BRANDS[1].url;
+var cheap='https://www.loom.fr/products/le-t-shirt';
 
 console.log(cheap);
 
@@ -67,6 +67,7 @@ if ( namebrandDistinct.findIndex(x=>x==item)==-1 )
 
 });
 console.log(namebrandDistinct);
+console.log(namebrandDistinct.length);
 
 // 🎯 TODO: Sort by price
 // 1. Create a function to sort the marketplace products by price
