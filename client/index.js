@@ -103,7 +103,7 @@ marketplace.forEach(function(item)
   sumPrice=+item.price;
 });
 const average = sumPrice/marketplace.length;
-console.log(average);
+console.log(average)
 /**
  * 🏎
  * We are almost done with the `marketplace` variable
@@ -124,6 +124,14 @@ console.log(average);
 //   'brand-name-n': [{...}, {...}, ..., {...}],
 // };
 //
+let brands = marketplace.reduce((r, a) => {
+  console.log("a", a);
+  console.log('r', r);
+  r[a.brand] = [...r[a.brand] || [], a];
+  return r;
+ }, {});
+ console.log(brands);
+
 // 2. Log the variable
 // 3. Log the number of products by brands
 
