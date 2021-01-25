@@ -105,7 +105,12 @@ const render = (products, pagination) => {
 /**
  * Declaration of all Listeners
  */
-
+selectPage.addEventListener('change',event=>{
+  fetchProducts(parseInt(event.target.value),selectShow.value )
+    .then(setCurrentProducts)
+    .then(() => render(currentProducts,currentPagination ));
+  
+});
 /**
  * Select the number of products to display
  * @type {[type]}
