@@ -268,6 +268,7 @@ Date2Wago.setDate(Date.now-14);
 var filtreDate=COTELE_PARIS.filter(item=>Date.now()-new Date(item.released)<=14);
 
 console.log(filtreDate);
+//pas trouver la solution je rerechercherai à postiori
 // 🎯 TODO: Reasonable price
 // // 1. Log if coteleparis is a reasonable price shop (true or false)
 // // A reasonable price if all the products are less than 100€
@@ -280,12 +281,12 @@ else{console.log(false);}
 // 🎯 TODO: Find a specific product
 // 1. Find the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the product
-
+//same as the one before
 
 // 🎯 TODO: Delete a specific product
 // 1. Delete the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the new list of product
-
+//just need to find the index by iteration
 // 🎯 TODO: Save the favorite product
 let blueJacket = {
   'link': 'https://coteleparis.com/collections/tous-les-produits-cotele/products/la-veste-bleu-roi',
@@ -295,12 +296,14 @@ let blueJacket = {
 
 // we make a copy of blueJacket to jacket
 // and set a new property `favorite` to true
-let jacket = blueJacket;
-jacket.favorite = true;
+//let jacket = blueJacket;
+//jacket.favorite = true;
 
 // 1. Log `blueJacket` and `jacket` variables
 // 2. What do you notice?
-
+//console.log(blueJacket);
+//console.log(jacket);
+//same value , jacket same to be connect to blueJacket like in python
 blueJacket = {
   'link': 'https://coteleparis.com/collections/tous-les-produits-cotele/products/la-veste-bleu-roi',
   'price': 110,
@@ -308,8 +311,11 @@ blueJacket = {
 };
 
 // 3. Update `jacket` property with `favorite` to true WITHOUT changing blueJacket properties
+var jacket=JSON.parse(JSON.stringify(blueJacket));
 
-
+jacket.favorite = true;
+console.log(blueJacket);
+console.log(jacket);
 
 
 
@@ -322,3 +328,4 @@ blueJacket = {
 // 🎯 TODO: Save in localStorage
 // 1. Save MY_FAVORITE_BRANDS in the localStorage
 // 2. log the localStorage
+//?
