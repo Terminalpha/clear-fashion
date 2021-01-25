@@ -85,7 +85,7 @@ console.log(sortingPrice);
 // 2. Create a variable and assign it the list of products by date from recent to old
 // 3. Log the variable
 var sortingDate=marketplace.sort(function (l, r) {
-  return new Date(l.date) - new Date(r.date);
+  return new Date(r.date) - new Date(l.date);
 });
 console.log(sortingDate);
 
@@ -124,27 +124,41 @@ console.log(average)
 //   'brand-name-n': [{...}, {...}, ..., {...}],
 // };
 //
-let brands = marketplace.reduce((r, a) => {
-  console.log("a", a);
-  console.log('r', r);
+const brands = marketplace.reduce((r, a) => {
+
   r[a.brand] = [...r[a.brand] || [], a];
   return r;
  }, {});
- console.log(brands);
+ 
 
 // 2. Log the variable
 // 3. Log the number of products by brands
-
-
+console.log(brands);
+var numberbybrands=[]
+for(var key in brands){
+  numberbybrands.push([key,brands[key].length]);
+}
+console.log(numberbybrands);
 // 🎯 TODO: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
-
-
+var brandsortprice=brands
+for(var key in brandsortprice){
+  brandsortprice[key].sort(function (l, r) {
+    return r.price - l.price;
+  });
+}; 
+console.log(brandsortprice);
 // 🎯 TODO: Sort by date for each brand
 // 1. For each brand, sort the products by date, from old to recent
 // 2. Log the sort
-
+var brandsortdate=brands
+for(var key in brandsortdate){
+  brandsortdate[key].sort(function (l, r) {
+    return new Date(l.date) - new Date(r.date);
+  });
+}; 
+console.log(brandsortdate);
 
 
 
