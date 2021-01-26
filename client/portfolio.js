@@ -8,6 +8,8 @@ let currentPagination = {};
 // inititiqte selectors
 const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
+const selectSort = document.querySelector('#sort-select');
+const selectBrand = document.querySelector('#brand-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
 
@@ -85,6 +87,17 @@ const renderPagination = pagination => {
   selectPage.innerHTML = options;
   selectPage.selectedIndex = currentPage - 1;
 };
+const renderBrands = brands => {
+  
+  const options = Array.from(
+    {'length': brand.length},
+    (value, index) => `<option value="${brands[index]}">${brands[index]}</option>`
+  ).join('');
+
+  selectBrand.innerHTML = options;
+  
+};
+
 
 /**
  * Render page selector
@@ -100,7 +113,14 @@ const render = (products, pagination) => {
   renderProducts(products);
   renderPagination(pagination);
   renderIndicators(pagination);
+
+  const brands=getBrandsFromProducts(currentProducts);
+  renderBrands(brands);
 };
+
+function getBrandsFromProducts(products){
+  return [...new Set(products.map(product=>product.brand))];
+}
 
 /**
  * Declaration of all Listeners
@@ -110,6 +130,42 @@ selectPage.addEventListener('change',event=>{
     .then(setCurrentProducts)
     .then(() => render(currentProducts,currentPagination ));
   
+});
+selectSort.addEventListener('change',event=>{
+  
+  if( event.target.value=='price-asc'){
+    
+    fetchProducts(currentPagination.currentPage, selectShow.value)
+    
+    .then(setCurrentProducts)
+    .then(() => render(currentProducts.sort(function (l, r) {
+      return l.price - r.price;
+    }), currentPagination));
+  }
+  else if( event.target.value=='price-desc'){
+    fetchProducts(currentPagination.currentPage, selectShow.value)
+    
+    .then(setCurrentProducts)
+    .then(() => render(currentProducts.sort(function (l, r) {
+      return r.price - l.price;
+    }), currentPagination));
+  }
+  else if( event.target.value=='date-asc'){
+    fetchProducts(currentPagination.currentPage, selectShow.value)
+    
+    .then(setCurrentProducts)
+    .then(() => render(currentProducts.sort(function (l, r) {
+      return new Date(r.date) - new Date(l.date);
+    }), currentPagination));
+  }
+  else if( event.target.value=='date-desc'){
+    fetchProducts(currentPagination.currentPage, selectShow.value)
+    
+    .then(setCurrentProducts)
+    .then(() => render(currentProducts.sort(function (l, r) {
+      return new Date(l.date) - new Date(r.date);
+    }), currentPagination));
+  }
 });
 /**
  * Select the number of products to display
