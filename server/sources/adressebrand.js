@@ -12,7 +12,7 @@ const parse = data => {
   return $('.product_list .ajax_block_product')
     .map((i, element) => {
       const name = $(element)
-        .find('.product-name')
+        .find('.product-name-container.versionpc .product-name')
         .text()
         .trim()
         .replace(/\s/g, ' ');
