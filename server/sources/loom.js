@@ -39,14 +39,17 @@ const parse = data => {
 };
 
 module.exports.scrape = async url => {
+  
   const response = await axios(url);
+  
   const {data, status} = response;
-
+  
   if (status >= 200 && status < 300) {
+    console.log(parse(data));
     return parse(data);
   }
 
   console.error(status);
-
+  
   return null;
 };

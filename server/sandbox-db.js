@@ -32,11 +32,12 @@ async function sandbox () {
     console.log('\n');
 
     console.log(`🕵️‍♀️  browsing ${pages.length} pages with Promise.all`);
-
+    
     const promises = pages.map(loom.scrape);
+    
     const results = await Promise.all(promises);
 
-    //console.log(`👕 ${results.length} results of promises found`);
+    console.log(`👕 ${results.length} results of promises found`);
     console.log(`👕 ${results.flat().length} products found`);
 
     products.push(results.flat());
