@@ -4,21 +4,25 @@
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
+let currentBrand = {};
 
 // inititiqte selectors
 const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
+const selectBrand = document.querySelector('#brand-select');
+const selectSort = document.querySelector('#sort-select');
 
 /**
  * Set global value
  * @param {Array} result - products to display
  * @param {Object} meta - pagination meta info
  */
-const setCurrentProducts = ({result, meta}) => {
+const setCurrentProducts = ({result, meta}, brands) => {
   currentProducts = result;
   currentPagination = meta;
+  currentBrand = brands
 };
 
 /**
@@ -45,6 +49,10 @@ const fetchProducts = async (page = 1, size = 12) => {
     return {currentProducts, currentPagination};
   }
 };
+
+const fetchBrands = () => {
+	
+}
 
 /**
  * Render list of products
@@ -86,6 +94,17 @@ const renderPagination = pagination => {
   selectPage.selectedIndex = currentPage - 1;
 };
 
+
+
+const renderBrands = brands => {
+  const options = Array.from(
+    {'length': brands.length},
+    (value, index) => `<option value="${brands[index]}">${brands[index]}</option>`
+  ).join('');
+
+  selectBrand.innerHTML = options;
+};
+
 /**
  * Render page selector
  * @param  {Object} pagination
@@ -100,7 +119,18 @@ const render = (products, pagination) => {
   renderProducts(products);
   renderPagination(pagination);
   renderIndicators(pagination);
+
+  const brands = getBrandsFromProducts(currentProducts);
+
+  renderBrands(brands)
 };
+
+/**
+ * Get list of brands from list of products
+ */
+function getBrandsFromProducts (products) {
+	return [...new Set(products.map(product => product.brand))];
+}
 
 /**
  * Declaration of all Listeners
@@ -121,3 +151,19 @@ document.addEventListener('DOMContentLoaded', () =>
     .then(setCurrentProducts)
     .then(() => render(currentProducts, currentPagination))
 );
+
+/**
+ * Select the page of products to display
+ * @type {[type]}
+ */
+ selectPage.addEventListener('change', event => {
+  fetchProducts(parseInt(event.target.value), selectShow.value)
+    .then(setCurrentProducts)
+    .then(() => render(currentProducts, currentPagination));
+});
+
+ selectSort.addEventListener('change', event => {
+  fetchProducts(parseInt(event.target.value), selectShow.value)
+    .then(setCurrentProducts)
+    .then(() => render(currentProducts, currentPagination));
+});

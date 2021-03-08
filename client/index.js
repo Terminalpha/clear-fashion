@@ -34,9 +34,8 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // I can find on these e-shops
 // 2. Log the variable
 
-
-
-
+const MY_FAVORITE_BRANDS_CHEAPEST = 'https://www.loom.fr/collections/tous-les-vetements/products/le-t-shirt';
+console.log(MY_FAVORITE_BRANDS_CHEAPEST);
 
 /**
  * 👕
@@ -51,36 +50,61 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 1. Create a variable and assign it the number of products
 // 2. Log the variable
 
+const numberprod = marketplace.length;
+console.log(numberprod);
 
 // 🎯 TODO: Brands name
 // 1. Create a variable and assign it the list of brands name only
 // 2. Log the variable
 // 3. Log how many brands we have
 
+const brandName = marketplace.map(product => product.brand);
+let unique = [...new Set(brandName)]
+
+console.log(unique);
 
 // 🎯 TODO: Sort by price
 // 1. Create a function to sort the marketplace products by price
 // 2. Create a variable and assign it the list of products by price from lowest to highest
 // 3. Log the variable
 
+marketplace.sort((a, b) => {
+    return a.price - b.price;
+});
+
+console.log(marketplace)
 
 // 🎯 TODO: Sort by date
 // 1. Create a function to sort the marketplace objects by products date
 // 2. Create a variable and assign it the list of products by date from recent to old
 // 3. Log the variable
 
+marketplace.sort((a, b) => {
+    return new Date(a.date) - new Date(b.date);
+});
+
+console.log(marketplace)
 
 // 🎯 TODO: Filter a specific price range
 // 1. Filter the list of products between 50€ and 100€
 // 2. Log the list
 
+const result = marketplace.filter(product => product.price < 100 && product.price > 50);
+
+console.log(result)
 
 // 🎯 TODO: Average Basket
 // 1. Determine the average basket of the marketplace
 // 2. Log the average
 
+var sum = 0;
+for( var i = 0; i < marketplace.length; i++ ){
+    sum += parseInt( marketplace[i].price, 10 );
+}
 
+var avg = sum/marketplace.length;
 
+console.log("average : " + avg)
 
 
 /**
@@ -105,6 +129,9 @@ console.log(MY_FAVORITE_BRANDS[0]);
 //
 // 2. Log the variable
 // 3. Log the number of products by brands
+
+const brands = {}
+
 
 
 // 🎯 TODO: Sort by price for each brand
