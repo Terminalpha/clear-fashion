@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const MONGODB_DB_NAME = 'clearfashion';
 const MONGODB_COLLECTION = 'products';
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = "mongodb+srv://Nicols:engineer@cluster0.b62zr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 let client = null;
 let database = null;
@@ -14,11 +14,12 @@ let database = null;
  * @type {MongoClient}
  */
 const getDB = module.exports.getDB = async () => {
+  console.log("0");
   try {
     if (database) {
       return database;
     }
-
+    
     client = await MongoClient.connect(MONGODB_URI, {'useNewUrlParser': true});
     database = client.db(MONGODB_DB_NAME);
 
@@ -37,6 +38,7 @@ const getDB = module.exports.getDB = async () => {
  * @return {Object}
  */
 module.exports.insert = async products => {
+  console.log("1");
   try {
     const db = await getDB();
     const collection = db.collection(MONGODB_COLLECTION);
@@ -58,6 +60,7 @@ module.exports.insert = async products => {
  * @return {Array}
  */
 module.exports.find = async query => {
+  console.log("2");
   try {
     const db = await getDB();
     const collection = db.collection(MONGODB_COLLECTION);
@@ -74,6 +77,7 @@ module.exports.find = async query => {
  * Close the connection
  */
 module.exports.close = async () => {
+  console.log("3");
   try {
     await client.close();
   } catch (error) {

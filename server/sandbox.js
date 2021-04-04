@@ -11,7 +11,7 @@ var toast = async function () {
 
 const page = toast();
 const {MongoClient} = require('mongodb');
-const MONGODB_URI = 'mongodb+srv://Bob:Bob01@cluster0.omlut.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const MONGODB_URI = "mongodb+srv://Nicols:engineer@cluster0.b62zr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const MONGODB_DB_NAME = 'clearfashion';
 
 
