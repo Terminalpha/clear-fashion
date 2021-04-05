@@ -34,7 +34,7 @@ async function sandbox () {
     console.log(`🕵️‍♀️  browsing ${pages.length} pages with Promise.all`);
     
     const promises = pages.map(page => loom.scrape(page));
-    console.log(promises);
+    
     const results = await Promise.all(promises);
     
     console.log(`👕 ${results.length} results of promises found`);
@@ -63,7 +63,13 @@ async function sandbox () {
     
     console.log(loomOnly);
 
-    //const lessthan50 = await db.find({'price': 'price'< 50});
+    const lessthan50 = await db.find({"price": {$lt:50}});
+    console.log(lessthan50);
+    
+    var sort = { price: 1 };
+    const cursor = await db.find({}, { sort: { price: 1 } });
+    console.log(cursor);
+
 
     db.close();
   } catch (e) {

@@ -1,20 +1,23 @@
-require('dotenv').config();
+//require('dotenv').config();
 const {MongoClient} = require('mongodb');
 const fs = require('fs');
 
-const MONGODB_DB_NAME = 'clearfashion';
+const MONGODB_DB_NAME = "clearfashion";
 const MONGODB_COLLECTION = 'products';
 const MONGODB_URI = "mongodb+srv://Nicols:engineer@cluster0.b62zr.mongodb.net/clearfashion?retryWrites=true&w=majority";
 
 let client = null;
 let database = null;
 
+
+//const config = require("../config");
+
 /**
  * Get db connection
  * @type {MongoClient}
  */
 const getDB = module.exports.getDB = async () => {
-  console.log("0");
+  
   try {
     if (database) {
       return database;
@@ -38,7 +41,7 @@ const getDB = module.exports.getDB = async () => {
  * @return {Object}
  */
 module.exports.insert = async products => {
-  console.log("1");
+  
   try {
     const db = await getDB();
     const collection = db.collection(MONGODB_COLLECTION);
@@ -60,7 +63,7 @@ module.exports.insert = async products => {
  * @return {Array}
  */
 module.exports.find = async query => {
-  console.log("2");
+  
   try {
     const db = await getDB();
     const collection = db.collection(MONGODB_COLLECTION);
@@ -77,7 +80,7 @@ module.exports.find = async query => {
  * Close the connection
  */
 module.exports.close = async () => {
-  console.log("3");
+  
   try {
     await client.close();
   } catch (error) {

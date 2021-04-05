@@ -1,5 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
+const DOMParser =require('dom-parser');
 const {'v5': uuidv5} = require('uuid');
 
 /**
@@ -45,8 +46,11 @@ module.exports.scrape = async url => {
   const {data, status} = response;
   
   if (status >= 200 && status < 300) {
-    console.log(parse(data));
-    return parse(data);
+    
+    const parser = new DOMParser();
+    const htmlDoc = parser.parseFromString(data, 'text/xml')
+    
+    return htmlDoc;
   }
 
   console.error(status);
