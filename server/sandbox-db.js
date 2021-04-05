@@ -61,20 +61,21 @@ async function sandbox () {
 
     const loomOnly = await db.find({'brand': 'loom'});
     
-    console.log(loomOnly);
+    
 
     const lessthan50 = await db.find({"price": {$lt:50}});
-    console.log(lessthan50);
+    
     
     var sort = { price: 1 };
     const cursor = await db.find({}, { sort: { price: 1 } });
-    console.log(cursor);
-
-
+    
+    
+    
     db.close();
+    
   } catch (e) {
     console.error(e);
   }
 }
-
 sandbox();
+
