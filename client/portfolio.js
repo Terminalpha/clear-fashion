@@ -1,18 +1,6 @@
 // Invoking strict mode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#invoking_strict_mode
 'use strict';
-const cors = require('cors');
-const express = require('express');
-const helmet = require('helmet');
 
-const PORT = 8092;
-
-const app = express();
-
-module.exports = app;
-
-app.use(require('body-parser').json());
-app.use(cors());
-app.use(helmet());
 
 app.options('*', cors());
 // current products on the page
@@ -21,15 +9,14 @@ let currentPagination = {};
 let currentBrand = {};
 
 // inititiqte selectors
-if (process.browser)
-{
+
 const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
 const selectBrand = document.querySelector('#brand-select');
 const selectSort = document.querySelector('#sort-select');
-}
+
 /**
  * Set global value
  * @param {Array} result - products to display
