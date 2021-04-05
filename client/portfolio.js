@@ -3,9 +3,7 @@
 const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
-const dedicatedbrand = require('./sources/dedicatedbrand');
-const loom = require('./sources/loom');
-const db = require('./db'); 
+
 const PORT = 8092;
 
 const app = express();
@@ -23,13 +21,15 @@ let currentPagination = {};
 let currentBrand = {};
 
 // inititiqte selectors
+if (process.browser)
+{
 const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
 const selectBrand = document.querySelector('#brand-select');
 const selectSort = document.querySelector('#sort-select');
-
+}
 /**
  * Set global value
  * @param {Array} result - products to display
@@ -49,6 +49,7 @@ const setCurrentProducts = ({result, meta}, brands) => {
  */
 const fetchProducts = async (page = 1, size = 12) => {
   try {
+    
     const response = await fetch(
       `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
     );
