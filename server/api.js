@@ -4,7 +4,7 @@ const helmet = require('helmet');
 const dedicatedbrand = require('./sources/dedicatedbrand');
 const loom = require('./sources/loom');
 const db = require('./db'); 
-const sandboxdb = require('./sandbox-db');
+
 
 const PORT = 8092;
 
@@ -22,18 +22,20 @@ app.get('/', (request, response) => {
   response.send({'ack': true});
 });
 
-app.get('/products/:id', (request, response) => {
-  async function test() {
+app.get('/products/:id', async(request, response) => {
+  
   try{
-    const product =await db.find({'_id': request.params.id});
-    response.send(product);
+    
+    const product =await db.find({'_id':request.params.id});
+    console.log(product);
+    await response.send(product);
   
    db.close();
   } catch (e) {
-    console.error(e);
-  }
+    response.send(e)
+  
 }
-test();
+
 });
 
 app.listen(PORT);
