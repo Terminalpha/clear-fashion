@@ -1,6 +1,22 @@
 // Invoking strict mode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#invoking_strict_mode
 'use strict';
+const cors = require('cors');
+const express = require('express');
+const helmet = require('helmet');
+const dedicatedbrand = require('./sources/dedicatedbrand');
+const loom = require('./sources/loom');
+const db = require('./db'); 
+const PORT = 8092;
 
+const app = express();
+
+module.exports = app;
+
+app.use(require('body-parser').json());
+app.use(cors());
+app.use(helmet());
+
+app.options('*', cors());
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
