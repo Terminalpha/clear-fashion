@@ -1,4 +1,4 @@
- Invoking strict mode https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode#invoking_strict_mode
+
 'use strict';
 
 console.log('🚀 This is it.');
