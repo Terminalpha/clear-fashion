@@ -1,7 +1,7 @@
 
 'use strict';
-data = require('./data.js');
-console.log('🚀 This is it.');
+const {marketplace} = require('./data.js');
+
 
 const MY_FAVORITE_BRANDS = [{
   'name': 'Hopaal',
