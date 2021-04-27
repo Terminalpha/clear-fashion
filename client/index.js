@@ -285,4 +285,4 @@ blueJacket = {
 // 🎯 TODO: Save in localStorage
 // 1. Save MY_FAVORITE_BRANDS in the localStorage
 // 2. log the localStorage
-module.exports;
+module.exports= {blueJacket};
