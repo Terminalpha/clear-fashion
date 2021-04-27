@@ -1,6 +1,6 @@
 
 'use strict';
-
+data = require('./data');
 console.log('🚀 This is it.');
 
 const MY_FAVORITE_BRANDS = [{
