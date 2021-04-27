@@ -1,6 +1,6 @@
 
 'use strict';
-data = require('./data')
+
 
 
 // current products on the page
