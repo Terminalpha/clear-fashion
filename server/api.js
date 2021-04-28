@@ -18,8 +18,16 @@ app.use(helmet());
 
 app.options('*', cors());
 
-app.get('/', (request, response) => {
-  response.send({'ack': true});
+app.get('/', async(request, response) => {
+  try{
+    
+    const product =await db.find();
+    console.log(product);
+    await response.send(product);
+  
+   db.close();
+  } catch (e) {
+    response.send(e)}
 });
 
 app.get('/products/:id', async(request, response) => {
